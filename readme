@@ -1,9 +1,16 @@
 final project:
 
 v1:
-
 i can search tweets using the existing apis
 next step:
 	finish the core algorithm
 	note the results may not be precise
 git on ubuntu modified, see the effects
+
+v2:
+naive bayes is added, which is from internet
+twitter_request_handler is created, which creates
+requests to the twitter api
+next step:
+	assembly the existing component
+	figure out how to get user's timeline
