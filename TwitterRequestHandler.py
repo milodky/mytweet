@@ -9,25 +9,27 @@ class TwitterRequestHandler:
 		self.CSecret = Tokens[3]
 	def MakeRequest(self):
 		api = TwitterAPI(self.CKey, self.CSecret, self.OToken, self.OSecret)
+		# this must be switched later to user's timeline
 		r = api.request('statuses/filter', {'locations' : '-74,40,-73,41'})
+		# in the end user should set the number of tweets they wanna read
 		Num = 10
 		results = []
+		# this method is too slow, can we get #Num tweets at the same time?
 		for item in r.get_iterator():
 			Size = len(results)
 			if Size == Num:
 				break
 			results.append(item)
 		
-		description = []
+		contents = []
 		for i in range(0, len(results)):
 			info = results[i]
 			content = info[u'user'][u'description']
 			if content == None:
 				continue
 			asc2_content = content.encode('ascii','ignore')
-			#str(content)
-			description.append(asc2_content)
-		return description
+			contents.append(asc2_content)
+		return contents
 
 
 if __name__ == "__main__":
