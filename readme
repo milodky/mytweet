@@ -14,3 +14,10 @@ requests to the twitter api
 next step:
 	assembly the existing component
 	figure out how to get user's timeline
+v3:
+components assemblied, can classify the tweets received from the api
+Bad performance, trying to improve it, but too hard for me at this point
+next step:
+	authentication
+	get user's timeline
+	put it on google app engine
