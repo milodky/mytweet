@@ -13,7 +13,6 @@ class Classifier(Mode):
 
 		if not len(words):
 			raise ValueError('Text did not contain any valid words')
-
 		self.words = words
 		return self
 
@@ -26,6 +25,7 @@ class Classifier(Mode):
 
 		except Exception as e:
 			#raise ValueError('Unable to read specified file "%s", the error message was: %s' % (file_contents, e))
+			self.words = []
 			return 'personal'
 
 	def set_doctypes(self, doctype1, doctype2):
@@ -86,7 +86,8 @@ class Classifier(Mode):
 
 		self.doctype1_word_count = db.get_words_count(self.doctype1)
 		self.doctype2_word_count = db.get_words_count(self.doctype2)
-
+		if self.words == []:
+			return 1
 		for word in self.words:
 			p = self.p_for_word(db, word)
 			pl.append(p)

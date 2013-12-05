@@ -1,6 +1,6 @@
 from classifier import Classifier
 
-class RawClassifier:
+class RawClassifier(object):
 	def __init__(self):
 		self.classifier = Classifier()
 	def ClassifyHandler(self, args):

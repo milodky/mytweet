@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Perky Quotes</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/styles.css"/>
+</head>
+<body>
+	<span class="title">Welcome to the PerkyQuotes Application</span>
+	<p/>
+	<table border="0" cellspacing="1" cellpadding="5" bgcolor="#CCCCCC" width="50%">
+	<tr bgcolor="#407BA8">
+		<td style="color: #ffffff; font-weight: bold;">PerkyQuote</td>
+		<td style="color: #ffffff; font-weight: bold;">Tweeted by</td>
+	</tr>
+	{% if accounts %}
+	{% for acct in accounts %}
+		<tr style="background:#ffffff" onMouseOver="this.style.background='#eeeeee';" onMouseOut="this.style.background='#ffffff';">
+			<td>{{ acct.title }}</a></td>
+			<td>{{acct.author}}</td>
+		</tr>
+	{% endfor %}
+	{% else %}
+	<span class="heading">No matching accounts found.</span>
+	{% endif %}
+
+	</table>
+	
+	<p/>
+	
+
+	
+	
+</body>
+</html>
+

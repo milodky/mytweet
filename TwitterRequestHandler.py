@@ -2,18 +2,21 @@ from TwitterAPI import *
 from unicodedata import normalize
 #from NaiveBayes import *
 from rawclassifier import *
-class TwitterRequestHandler:
+import tweepy
+class TwitterRequestHandler(object):
 	def __init__(self, Tokens):
 		self.OToken = Tokens[0]
 		self.OSecret = Tokens[1]
 		self.CKey = Tokens[2]
 		self.CSecret = Tokens[3]
 	def MakeRequest(self):
+		"""
 		api = TwitterAPI(self.CKey, self.CSecret, self.OToken, self.OSecret)
 		# this must be switched later to user's timeline
 		r = api.request('statuses/filter', {'locations' : '-74,40,-73,41'})
+		fd.write('abc')
 		# in the end user should set the number of tweets they wanna read
-		Num = 100
+		Num = 5
 		results = []
 		# this method is too slow, can we get #Num tweets at the same time?
 		for item in r.get_iterator():
@@ -21,24 +24,19 @@ class TwitterRequestHandler:
 			if Size == Num:
 				break
 			results.append(item)
-		
+		"""
+
 		contents = []
-		#fp = open('personaltweets.txt', 'w')
+		auth = tweepy.OAuthHandler(self.CKey, self.CSecret)
+		auth.set_access_token(self.OToken, self.OSecret)
+		api = tweepy.API(auth)
+		t = api.search(q = "", geocode = '37.781157,-122.398720,1mi', count = '5')
 		classified_contents = {'sports' : [], 'finance' : [], 'personal' : []}
 		TweetClassifier = RawClassifier()
-		for i in range(0, len(results)):
-			info = results[i]
-			content = info[u'user'][u'description']
-			if content == None:
-				continue
-			asc2_content = content.encode('ascii','ignore')
-			#fp.write(asc2_content + '\n')
-			if asc2_content == None:
-				continue
-			result = TweetClassifier.FinalHandler(asc2_content)
-			classified_contents[result].append(asc2_content)
+		for tweet in t:
+			result = TweetClassifier.FinalHandler(tweet.text)
+			classified_contents[result].append(tweet.text)
 			#contents.append(asc2_content)
-		#fp.close()
 		return classified_contents
 
 

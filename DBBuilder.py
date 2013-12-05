@@ -2,12 +2,12 @@ from learn import Learn
 """
 this package builds the database needed for the twitter classifier
 """
-class CateBuilder:
+class CateBuilder(object):
 	def __init__(self, args):	
 		self.mode = Learn()
 		self.mode.validate(args)
 		self.mode.execute()
-class DBBuilder:
+class DBBuilder(object):
 	def __init__(self):
 		finance_path = 'financetweets.txt'
 		finance_count = '1000'

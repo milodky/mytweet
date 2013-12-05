@@ -8,16 +8,22 @@ next step:
 git on ubuntu modified, see the effects
 
 v2:
-naive bayes is added, which is from internet
-twitter_request_handler is created, which creates
-requests to the twitter api
+- naive bayes is added, which is from internet
+- twitter_request_handler is created, which creates requests to the twitter api
 next step:
 	assembly the existing component
 	figure out how to get user's timeline
 v3:
-components assemblied, can classify the tweets received from the api
-Bad performance, trying to improve it, but too hard for me at this point
+- components assemblied, can classify the tweets received from the api
+- Bad performance, trying to improve it, but too hard for me at this point
 next step:
 	authentication
 	get user's timeline
 	put it on google app engine
+
+v4:
+- can be executed by google app engine locally
+next step:
+	frontend work, totally have no sense of it
+	make use of nltk library to enhance the classification
+
